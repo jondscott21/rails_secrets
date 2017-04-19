@@ -1,0 +1,27 @@
+<div class="container">
+  <h3><%= @user.name%></h3>
+  <form action="/users/<%= @user.id%>" method="post">
+    <input type="hidden" name="_method" value="put">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <div class="input-field">
+      <input type="text" name="user[name]" value="<%= @user.name%>" id="name">
+      <label for="name">Name</label>
+    </div>
+    <% flash.each do |name, msg| %>
+        <span class="red-text"><%=  msg[0] %></span>
+    <% end %>
+    <div class="input-field">
+      <input type="email" name="user[email]" value="<%= @user.email%>" id="email">
+      <label for="email">Email</label>
+    </div>
+    <% flash.each do |name, msg| %>
+        <span class="red-text"><%=  msg[1] %></span>
+    <% end %>
+    <input type="submit" value="Update User">
+  </form>
+  <form action="/users/<%= @user.id%>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit"  value="Delete">
+  </form>
+</div>

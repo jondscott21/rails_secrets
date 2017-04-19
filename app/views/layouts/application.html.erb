@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DojoSecrets</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container">
+      <% if flash %>
+        <% flash.each do |name, msg| %>
+          <span class="red-text"><%=  msg %></span>
+        <% end %>
+      <% end %>
+      <% if current_user %>
+          <form action="/sessions/<%=current_user.id%>" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" class="btn red" value="Log Out">
+          </form>
+      <% end %>
+    </div>
+    <%= yield %>
+  </body>
+</html>

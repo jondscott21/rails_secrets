@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col s6">
+      <h1>Welcome, <%= @user.name%></h1>
+      <a href="/users/<%= @user.id%>/edit">Edit Profile</a>
+      <form action="/secrets" method="post">
+        <div class="input-field">
+          <textarea name="secret[content]" id="content"></textarea>
+          <label for="content" >New Secret</label>
+        </div>
+        <% flash.each do |name, msg| %>
+            <span class="red-text"><%=  msg %></span>
+        <% end %>
+        <input type="submit" value="Create Secret">
+      </form>
+        <% @user.secrets.each do |secret|%>
+          <p><%= secret.content%></p>
+          <p><%= %></p>
+          <% if secret.user == current_user%>
+            <form action="/secrets/<%= secret.id%>" method="post">
+              <input type="hidden" name="_method" value="delete">
+              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+              <input type="submit" value="Delete Secret">
+            </form>
+          <% end%>
+        <% end%>
+    </div>
+    <div class="col s6">
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="container">
+  <form action="/sessions" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <div class="input-field">
+      <input type="email" id="email" name="email">
+      <label for="email">Email</label>
+    </div>
+    <% flash.each do |name, msg| %>
+        <span class="red-text"><%=  msg %></span>
+    <% end %>
+    <div class="input-field">
+      <input type="password" id="password" name="password">
+      <label for="password">Password</label>
+    </div>
+    <% flash.each do |name, msg| %>
+        <span class="red-text"><%=  msg[0] %></span>
+    <% end %>
+    <input type="submit" class="btn blue" value="Log In">
+  </form>
+</div>

@@ -1,0 +1,35 @@
+<div class="container">
+  <form action="/users" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <div class="input-field">
+      <input type="text" name="user[name]" id="name">
+      <label for="name">Name</label>
+    </div>
+    <% flash.each do |name, msg| %>
+        <span class="red-text"><%=  msg %></span>
+    <% end %>
+    <div class="input-field">
+      <input type="email" name="user[email]" id="email">
+      <label for="email">Email</label>
+    </div>
+    <% flash.each do |name, msg| %>
+        <span class="red-text"><%=  msg %></span>
+    <% end %>
+    <div class="input-field">
+      <input type="password" name="user[password]" id="password">
+      <label for="password">Password</label>
+    </div>
+    <% flash.each do |name, msg| %>
+        <span class="red-text"><%=  msg %></span>
+    <% end %>
+    <div class="input-field">
+      <input type="password" name="user[password_confirmation]" id="password_confirm">
+      <label for="password_confirm">Password Confirmation</label>
+    </div>
+    <% flash.each do |name, msg| %>
+        <span class="red-text"><%=  msg %></span>
+    <% end %>
+    <input type="submit" value="Join">
+  </form>
+
+</div>
